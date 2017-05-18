@@ -1,0 +1,6 @@
+name: Monsido Module
+description: Append possible page urls to site html head tag
+package: Custom
+
+type: module
+core: 8.x

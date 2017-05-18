@@ -1,0 +1,34 @@
+<?php
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_page_top().
+ *
+ * add monsido tag to edit or add pages.
+ */
+
+function monsido_page_top(array &$page_top) {
+    
+    $current_url = \Drupal::request()->getRequestUri();
+    
+    if(strstr($current_url, '/edit')){
+        
+        $node = \Drupal::routeMatch()->getParameter('node');
+        $nid = $node->id();
+        $options = ['absolute' => true];
+        $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $nid], $options);
+        $url = $url->toString();
+
+        $page_top['monsido'] = [
+            '#type' => 'inline_template',
+            '#template' => "<!-- Monsido: public_urls['{$url}'] -->"
+        ];
+    }
+}
