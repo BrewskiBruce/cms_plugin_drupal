@@ -1,17 +1,9 @@
 <?php
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Menu\MenuTreeParameters;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Core\Template\Attribute;
-use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Url;
 
 /**
- * Implements hook_page_top().
- *
- * add monsido tag to edit or add pages.
+ * @param array $page_top
  */
 
 function monsido_page_top(array &$page_top) {
